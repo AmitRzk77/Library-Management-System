@@ -109,6 +109,26 @@ The system exposes the following API endpoints:
 
 Your API will be available at `http://127.0.0.1:8000/api/`.
 
+## Permissions and Authorization
+
+- **Permissions**: The system implements various permission classes to control access. For instance:
+  - **IsAuthenticated**: Only authenticated users can access certain endpoints.
+  - **IsAdminUser**: Only admins can create, update, or delete books, authors, genres, etc.
+  - **IsOwner**: Users can only update their own transactions or reviews.
+
+- **Authorization**: Users need to authenticate via **Token Authentication**. You can get the token by logging in via the `login/` endpoint (if available).
+
+## Filtering and Pagination
+
+- **Filtering**: The system supports filtering of data based on various fields. For example:
+  - Books can be filtered by title, genre, author, etc.
+  - Transactions can be filtered by status (borrowed, returned, etc.).
+
+  The filtering is done via query parameters, like `GET /api/books/?genre=Fiction&author=John%20Doe`.
+
+- **Pagination**: API responses that return lists (e.g., books, authors) are paginated. By default, results are paginated with 10 items per page, but this can be customized using the `page_size` query parameter, like `GET /api/books/?page=2`.
+
+
 ## Testing
 
 To run tests, use:
